@@ -29,38 +29,67 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 0, horizontal: deviceWidth / 4),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const AspectRatio(
-                aspectRatio: 1,
-                child: Placeholder(),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 16),
+        child: Column(
+          children: [
+            const Expanded(
+              flex: 1,
+              child: SizedBox(),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const AspectRatio(
+                  aspectRatio: 1,
+                  child: Placeholder(),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        '** ℃',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.blue),
+                      ),
+                      Text(
+                        '** ℃',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge
+                            ?.copyWith(color: Colors.red),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: const EdgeInsets.only(
+                  top: 80,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '** ℃',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(color: Colors.blue),
+                    TextButton(
+                      onPressed: () => {},
+                      child: const Text('Close'),
                     ),
-                    Text(
-                      '** ℃',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(color: Colors.red),
+                    TextButton(
+                      onPressed: () => {},
+                      child: const Text('Reload'),
                     ),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
