@@ -66,8 +66,7 @@ class MyHomePage extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(
-              flex: 1,
+            Flexible(
               child: Column(
                 children: [
                   const SizedBox(
