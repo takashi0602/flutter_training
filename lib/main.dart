@@ -49,15 +49,21 @@ class MyHomePage extends StatelessWidget {
                   height: 16,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      '** ℃',
-                      style: textThemeLabelLarge?.copyWith(color: Colors.blue),
+                    Expanded(
+                      child: Text(
+                        '** ℃',
+                        textAlign: TextAlign.center,
+                        style:
+                            textThemeLabelLarge?.copyWith(color: Colors.blue),
+                      ),
                     ),
-                    Text(
-                      '** ℃',
-                      style: textThemeLabelLarge?.copyWith(color: Colors.red),
+                    Expanded(
+                      child: Text(
+                        '** ℃',
+                        textAlign: TextAlign.center,
+                        style: textThemeLabelLarge?.copyWith(color: Colors.red),
+                      ),
                     ),
                   ],
                 ),
