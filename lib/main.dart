@@ -26,6 +26,9 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
 
+    final TextStyle? textThemeLabelLarge =
+        Theme.of(context).textTheme.labelLarge;
+
     return Scaffold(
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: deviceWidth / 4),
@@ -49,17 +52,12 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       Text(
                         '** ℃',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Colors.blue),
+                        style:
+                            textThemeLabelLarge?.copyWith(color: Colors.blue),
                       ),
                       Text(
                         '** ℃',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge
-                            ?.copyWith(color: Colors.red),
+                        style: textThemeLabelLarge?.copyWith(color: Colors.red),
                       ),
                     ],
                   ),
