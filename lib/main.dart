@@ -45,45 +45,49 @@ class MyHomePage extends StatelessWidget {
                   aspectRatio: 1,
                   child: Placeholder(),
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        '** ℃',
-                        style:
-                            textThemeLabelLarge?.copyWith(color: Colors.blue),
-                      ),
-                      Text(
-                        '** ℃',
-                        style: textThemeLabelLarge?.copyWith(color: Colors.red),
-                      ),
-                    ],
-                  ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      '** ℃',
+                      style: textThemeLabelLarge?.copyWith(color: Colors.blue),
+                    ),
+                    Text(
+                      '** ℃',
+                      style: textThemeLabelLarge?.copyWith(color: Colors.red),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
                 ),
               ],
             ),
             Expanded(
               flex: 1,
-              child: Container(
-                margin: const EdgeInsets.only(
-                  top: 80,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextButton(
-                      onPressed: () => {},
-                      child: const Text('Close'),
-                    ),
-                    TextButton(
-                      onPressed: () => {},
-                      child: const Text('Reload'),
-                    ),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(
+                        onPressed: () => {},
+                        child: const Text('Close'),
+                      ),
+                      TextButton(
+                        onPressed: () => {},
+                        child: const Text('Reload'),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
