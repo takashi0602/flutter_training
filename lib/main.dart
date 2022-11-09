@@ -29,10 +29,37 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 0, horizontal: deviceWidth / 4),
-        child: const Center(
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Placeholder(),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const AspectRatio(
+                aspectRatio: 1,
+                child: Placeholder(),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      '** ℃',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(color: Colors.blue),
+                    ),
+                    Text(
+                      '** ℃',
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelLarge
+                          ?.copyWith(color: Colors.red),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
