@@ -79,16 +79,22 @@ class MyHomePage extends StatelessWidget {
                     height: 80,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextButton(
-                        onPressed: () => {},
-                        child: const Text('Close'),
+                      Expanded(
+                        child: Center(
+                          child: TextButton(
+                            onPressed: () => {},
+                            child: const Text('Close'),
+                          ),
+                        ),
                       ),
-                      TextButton(
-                        onPressed: () => {},
-                        child: const Text('Reload'),
+                      Expanded(
+                        child: Center(
+                          child: TextButton(
+                            onPressed: () => {},
+                            child: const Text('Reload'),
+                          ),
+                        ),
                       ),
                     ],
                   ),
