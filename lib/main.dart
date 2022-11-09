@@ -24,84 +24,86 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double deviceWidth = MediaQuery.of(context).size.width;
-
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
 
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: deviceWidth / 4),
-        child: Column(
-          children: [
-            const Spacer(
-              flex: 1,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const AspectRatio(
-                  aspectRatio: 1,
-                  child: Placeholder(),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        '** ℃',
-                        textAlign: TextAlign.center,
-                        style:
-                            textThemeLabelLarge?.copyWith(color: Colors.blue),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        '** ℃',
-                        textAlign: TextAlign.center,
-                        style: textThemeLabelLarge?.copyWith(color: Colors.red),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-              ],
-            ),
-            Flexible(
-              child: Column(
+      body: SizedBox.expand(
+        child: FractionallySizedBox(
+          widthFactor: 0.5,
+          alignment: FractionalOffset.center,
+          child: Column(
+            children: [
+              const Spacer(
+                flex: 1,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
+                  const AspectRatio(
+                    aspectRatio: 1,
+                    child: Placeholder(),
+                  ),
                   const SizedBox(
-                    height: 80,
+                    height: 16,
                   ),
                   Row(
                     children: [
                       Expanded(
-                        child: Center(
-                          child: TextButton(
-                            onPressed: () => {},
-                            child: const Text('Close'),
-                          ),
+                        child: Text(
+                          '** ℃',
+                          textAlign: TextAlign.center,
+                          style:
+                              textThemeLabelLarge?.copyWith(color: Colors.blue),
                         ),
                       ),
                       Expanded(
-                        child: Center(
-                          child: TextButton(
-                            onPressed: () => {},
-                            child: const Text('Reload'),
-                          ),
+                        child: Text(
+                          '** ℃',
+                          textAlign: TextAlign.center,
+                          style:
+                              textThemeLabelLarge?.copyWith(color: Colors.red),
                         ),
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                 ],
               ),
-            ),
-          ],
+              Flexible(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: TextButton(
+                              onPressed: () => {},
+                              child: const Text('Close'),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: TextButton(
+                              onPressed: () => {},
+                              child: const Text('Reload'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
