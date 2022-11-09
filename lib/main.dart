@@ -28,7 +28,7 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 0, horizontal: deviceWidth / 4),
+        margin: EdgeInsets.symmetric(horizontal: deviceWidth / 4),
         child: Column(
           children: [
             const Expanded(
