@@ -31,9 +31,8 @@ class MyHomePage extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: deviceWidth / 4),
         child: Column(
           children: [
-            const Expanded(
+            const Spacer(
               flex: 1,
-              child: SizedBox(),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
