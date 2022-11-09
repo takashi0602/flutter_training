@@ -38,8 +38,6 @@ class MyHomePage extends StatelessWidget {
                 flex: 1,
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   const AspectRatio(
                     aspectRatio: 1,
