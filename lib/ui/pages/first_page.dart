@@ -1,28 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_training/ui/pages/first_page.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FirstPage extends StatefulWidget {
+  const FirstPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const FirstPage(),
-    );
-  }
+  State<FirstPage> createState() => _FirstPageState();
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
+class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     final TextStyle? textThemeLabelLarge =
