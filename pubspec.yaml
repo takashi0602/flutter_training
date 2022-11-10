@@ -41,6 +41,7 @@ dependencies:
       ref: main
       path: packages/yumemi_weather
   flutter_svg: ^1.1.6
+  flutter_hooks: ^0.18.5+1
 
 dev_dependencies:
   flutter_test:
