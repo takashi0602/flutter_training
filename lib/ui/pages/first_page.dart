@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_training/main.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -7,11 +8,26 @@ class FirstPage extends StatefulWidget {
   State<FirstPage> createState() => _FirstPageState();
 }
 
-class _FirstPageState extends State<FirstPage> {
+class _FirstPageState extends State<FirstPage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
+
+    // 画面を描画後、0.5秒待機し画面遷移する
+    WidgetsBinding.instance.endOfFrame.then(
+      (_) {
+        Future.delayed(const Duration(milliseconds: 500), () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const MyHomePage();
+              },
+            ),
+          );
+        });
+      },
+    );
 
     return Scaffold(
       body: SizedBox.expand(
