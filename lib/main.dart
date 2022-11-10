@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
+import 'package:flutter_svg/svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? _weather;
 
+  Widget _getWeatherImage() {
+    switch (_weather) {
+      case 'sunny':
+        return SvgPicture.asset(
+          'assets/images/sunny.svg',
+          semanticsLabel: 'sunny',
+        );
+      case 'cloudy':
+        return SvgPicture.asset(
+          'assets/images/cloudy.svg',
+          semanticsLabel: 'cloudy',
+        );
+      case 'rainy':
+        return SvgPicture.asset(
+          'assets/images/rainy.svg',
+          semanticsLabel: 'rainy',
+        );
+      default:
+        return const Placeholder();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextStyle? textThemeLabelLarge =
@@ -49,9 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Column(
                 children: [
-                  const AspectRatio(
+                  AspectRatio(
                     aspectRatio: 1,
-                    child: Placeholder(),
+                    child: _getWeatherImage(),
                   ),
                   const SizedBox(
                     height: 16,
