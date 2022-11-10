@@ -156,5 +156,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  yumemi_weather:
+    dependency: "direct main"
+    description:
+      path: "packages/yumemi_weather"
+      ref: main
+      resolved-ref: "9c9e1e42cb892748a025e2c7a3768694cf93da4f"
+      url: "https://github.com/yumemi-inc/flutter-training.git"
+    source: git
+    version: "1.0.0"
 sdks:
   dart: ">=2.18.2 <3.0.0"
