@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -21,37 +22,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends HookWidget {
   const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  String? _weather;
-
-  Widget _getWeatherImage() {
-    switch (_weather) {
-      case 'sunny':
-        return SvgPicture.asset(
-          'assets/images/sunny.svg',
-          semanticsLabel: 'sunny',
-        );
-      case 'cloudy':
-        return SvgPicture.asset(
-          'assets/images/cloudy.svg',
-          semanticsLabel: 'cloudy',
-        );
-      case 'rainy':
-        return SvgPicture.asset(
-          'assets/images/rainy.svg',
-          semanticsLabel: 'rainy',
-        );
-      default:
-        return const Placeholder();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +31,30 @@ class _MyHomePageState extends State<MyHomePage> {
         Theme.of(context).textTheme.labelLarge;
 
     final yumemiWeather = YumemiWeather();
+
+    final weather = useState<String?>(null);
+
+    final getWeatherImage = useCallback(() {
+      switch (weather.value) {
+        case 'sunny':
+          return SvgPicture.asset(
+            'assets/images/sunny.svg',
+            semanticsLabel: 'sunny',
+          );
+        case 'cloudy':
+          return SvgPicture.asset(
+            'assets/images/cloudy.svg',
+            semanticsLabel: 'cloudy',
+          );
+        case 'rainy':
+          return SvgPicture.asset(
+            'assets/images/rainy.svg',
+            semanticsLabel: 'rainy',
+          );
+        default:
+          return const Placeholder();
+      }
+    }, [weather]);
 
     return Scaffold(
       body: SizedBox.expand(
@@ -74,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   AspectRatio(
                     aspectRatio: 1,
-                    child: _getWeatherImage(),
+                    child: getWeatherImage(),
                   ),
                   const SizedBox(
                     height: 16,
@@ -124,9 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Center(
                             child: TextButton(
                               onPressed: () => {
-                                setState(() {
-                                  _weather = yumemiWeather.fetchSimpleWeather();
-                                })
+                                weather.value =
+                                    yumemiWeather.fetchSimpleWeather()
                               },
                               child: const Text('Reload'),
                             ),
