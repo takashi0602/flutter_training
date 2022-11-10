@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_training/ui/components/weather_image.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -34,28 +35,6 @@ class MyHomePage extends HookWidget {
 
     final weather = useState<String?>(null);
 
-    final getWeatherImage = useCallback(() {
-      switch (weather.value) {
-        case 'sunny':
-          return SvgPicture.asset(
-            'assets/images/sunny.svg',
-            semanticsLabel: 'sunny',
-          );
-        case 'cloudy':
-          return SvgPicture.asset(
-            'assets/images/cloudy.svg',
-            semanticsLabel: 'cloudy',
-          );
-        case 'rainy':
-          return SvgPicture.asset(
-            'assets/images/rainy.svg',
-            semanticsLabel: 'rainy',
-          );
-        default:
-          return const Placeholder();
-      }
-    }, [weather]);
-
     return Scaffold(
       body: SizedBox.expand(
         child: FractionallySizedBox(
@@ -70,7 +49,9 @@ class MyHomePage extends HookWidget {
                 children: [
                   AspectRatio(
                     aspectRatio: 1,
-                    child: getWeatherImage(),
+                    child: WeatherImage(
+                      weather: weather.value,
+                    ),
                   ),
                   const SizedBox(
                     height: 16,
