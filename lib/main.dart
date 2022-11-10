@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yumemi_weather/yumemi_weather.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
+
+    final yumemiWeather = YumemiWeather();
 
     return Scaffold(
       body: SizedBox.expand(
@@ -97,7 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         Expanded(
                           child: Center(
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {
+                                setState(() {
+                                  _weather = yumemiWeather.fetchSimpleWeather();
+                                })
+                              },
                               child: const Text('Reload'),
                             ),
                           ),
