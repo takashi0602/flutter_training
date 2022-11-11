@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
+import 'package:flutter_training/foundation/ext/iterable_ext.dart';
 
 enum Weather {
   sunny,
@@ -14,19 +15,7 @@ class YumemiWeatherNotifier extends StateNotifier<Weather?> {
 
   void fetchSimpleWeather() {
     final weather = yumemiWeather.fetchSimpleWeather();
-    switch (weather) {
-      case 'sunny':
-        state = Weather.sunny;
-        break;
-      case 'cloudy':
-        state = Weather.cloudy;
-        break;
-      case 'rainy':
-        state = Weather.rainy;
-        break;
-      default:
-        state = null;
-    }
+    state = Weather.values.byNameOrNull(weather);
   }
 }
 
