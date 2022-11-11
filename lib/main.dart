@@ -34,8 +34,6 @@ class MyHomePage extends ConsumerWidget {
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
 
-    final weather = ref.watch(yumemiWeatherProvider);
-
     return Scaffold(
       body: SizedBox.expand(
         child: FractionallySizedBox(
@@ -48,11 +46,9 @@ class MyHomePage extends ConsumerWidget {
               ),
               Column(
                 children: [
-                  AspectRatio(
+                  const AspectRatio(
                     aspectRatio: 1,
-                    child: WeatherImage(
-                      weather: weather,
-                    ),
+                    child: WeatherImage(),
                   ),
                   const SizedBox(
                     height: 16,
