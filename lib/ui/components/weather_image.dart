@@ -11,17 +11,17 @@ class WeatherImage extends ConsumerWidget {
     final weather = ref.watch(yumemiWeatherProvider);
 
     switch (weather) {
-      case 'sunny':
+      case Weather.sunny:
         return SvgPicture.asset(
           'assets/images/sunny.svg',
           semanticsLabel: 'sunny',
         );
-      case 'cloudy':
+      case Weather.cloudy:
         return SvgPicture.asset(
           'assets/images/cloudy.svg',
           semanticsLabel: 'cloudy',
         );
-      case 'rainy':
+      case Weather.rainy:
         return SvgPicture.asset(
           'assets/images/rainy.svg',
           semanticsLabel: 'rainy',
