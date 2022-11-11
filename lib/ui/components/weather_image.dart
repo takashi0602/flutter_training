@@ -26,7 +26,7 @@ class WeatherImage extends ConsumerWidget {
           'assets/images/rainy.svg',
           semanticsLabel: 'rainy',
         );
-      default:
+      case null:
         return const Placeholder();
     }
   }
