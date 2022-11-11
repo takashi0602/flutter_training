@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_training/data/provider/yumemi_weather_provider.dart';
 import 'package:flutter_training/ui/components/weather_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yumemi_weather/yumemi_weather.dart';
 
 void main() {
   runApp(
@@ -27,17 +26,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends HookWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
 
-    final yumemiWeather = YumemiWeather();
-
-    final weather = useState<String?>(null);
+    final weather = ref.watch(yumemiWeatherProvider);
 
     return Scaffold(
       body: SizedBox.expand(
@@ -54,7 +51,7 @@ class MyHomePage extends HookWidget {
                   AspectRatio(
                     aspectRatio: 1,
                     child: WeatherImage(
-                      weather: weather.value,
+                      weather: weather,
                     ),
                   ),
                   const SizedBox(
@@ -104,9 +101,10 @@ class MyHomePage extends HookWidget {
                         Expanded(
                           child: Center(
                             child: TextButton(
-                              onPressed: () => {
-                                weather.value =
-                                    yumemiWeather.fetchSimpleWeather()
+                              onPressed: () {
+                                ref
+                                    .read(yumemiWeatherProvider.notifier)
+                                    .fetchSimpleWeather();
                               },
                               child: const Text('Reload'),
                             ),
