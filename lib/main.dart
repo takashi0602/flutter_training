@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_training/ui/components/weather_image.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yumemi_weather/yumemi_weather.dart';
-import 'package:flutter_svg/svg.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
