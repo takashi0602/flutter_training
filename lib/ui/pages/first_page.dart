@@ -10,10 +10,8 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> with WidgetsBindingObserver {
   @override
-  Widget build(BuildContext context) {
-    final TextStyle? textThemeLabelLarge =
-        Theme.of(context).textTheme.labelLarge;
-
+  initState() {
+    super.initState();
     // 画面を描画後、0.5秒待機し画面遷移する
     WidgetsBinding.instance.endOfFrame.then(
       (_) {
@@ -28,6 +26,12 @@ class _FirstPageState extends State<FirstPage> with WidgetsBindingObserver {
         });
       },
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final TextStyle? textThemeLabelLarge =
+        Theme.of(context).textTheme.labelLarge;
 
     return Scaffold(
       body: SizedBox.expand(
