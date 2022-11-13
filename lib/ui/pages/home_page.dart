@@ -66,7 +66,11 @@ class HomePage extends ConsumerWidget {
                         Expanded(
                           child: Center(
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () {
+                                if (Navigator.of(context).canPop()) {
+                                  Navigator.of(context).pop();
+                                }
+                              },
                               child: const Text('Close'),
                             ),
                           ),
