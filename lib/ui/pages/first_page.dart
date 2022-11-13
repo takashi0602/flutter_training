@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_training/main.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FirstPage extends StatefulWidget {
+class FirstPage extends HookConsumerWidget with WidgetsBindingObserver {
   const FirstPage({super.key});
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
-}
-
-class _FirstPageState extends State<FirstPage> with WidgetsBindingObserver {
-  @override
-  initState() {
-    super.initState();
-    // 画面を描画後、0.5秒待機し画面遷移する
-    WidgetsBinding.instance.endOfFrame.then(
-      (_) {
-        Future.delayed(const Duration(milliseconds: 500), () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return const MyHomePage();
-              },
-            ),
-          );
-        });
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
+
+    // 画面を描画後、0.5秒待機し画面遷移する
+    useEffect(() {
+      WidgetsBinding.instance.endOfFrame.then(
+        (_) {
+          Future.delayed(const Duration(milliseconds: 500), () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return const MyHomePage();
+                },
+              ),
+            );
+          });
+        },
+      );
+
+      return null;
+    }, const []);
 
     return Scaffold(
       body: SizedBox.expand(
