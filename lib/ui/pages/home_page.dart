@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_training/data/provider/yumemi_weather_provider.dart';
 import 'package:flutter_training/ui/components/weather_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -67,8 +68,8 @@ class HomePage extends ConsumerWidget {
                           child: Center(
                             child: TextButton(
                               onPressed: () {
-                                if (Navigator.of(context).canPop()) {
-                                  Navigator.of(context).pop();
+                                if (context.canPop()) {
+                                  context.pop();
                                 }
                               },
                               child: const Text('Close'),

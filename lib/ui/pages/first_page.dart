@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_training/ui/pages/home_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class FirstPage extends HookConsumerWidget with WidgetsBindingObserver {
   const FirstPage({super.key});
@@ -16,13 +16,7 @@ class FirstPage extends HookConsumerWidget with WidgetsBindingObserver {
       WidgetsBinding.instance.endOfFrame.then(
         (_) {
           Future.delayed(const Duration(milliseconds: 500), () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return const HomePage();
-                },
-              ),
-            );
+            context.push('/home');
           });
         },
       );
