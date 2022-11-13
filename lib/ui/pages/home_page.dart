@@ -1,34 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_training/ui/pages/home_page.dart';
+import 'package:flutter_training/data/provider/yumemi_weather_provider.dart';
+import 'package:flutter_training/ui/components/weather_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class FirstPage extends HookConsumerWidget with WidgetsBindingObserver {
-  const FirstPage({super.key});
+class HomePage extends ConsumerWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final TextStyle? textThemeLabelLarge =
         Theme.of(context).textTheme.labelLarge;
-
-    // 画面を描画後、0.5秒待機し画面遷移する
-    useEffect(() {
-      WidgetsBinding.instance.endOfFrame.then(
-        (_) {
-          Future.delayed(const Duration(milliseconds: 500), () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return const HomePage();
-                },
-              ),
-            );
-          });
-        },
-      );
-
-      return null;
-    }, const []);
 
     return Scaffold(
       body: SizedBox.expand(
@@ -44,7 +25,7 @@ class FirstPage extends HookConsumerWidget with WidgetsBindingObserver {
                 children: [
                   const AspectRatio(
                     aspectRatio: 1,
-                    child: Placeholder(),
+                    child: WeatherImage(),
                   ),
                   const SizedBox(
                     height: 16,
@@ -93,7 +74,11 @@ class FirstPage extends HookConsumerWidget with WidgetsBindingObserver {
                         Expanded(
                           child: Center(
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () {
+                                ref
+                                    .read(yumemiWeatherProvider.notifier)
+                                    .fetchSimpleWeather();
+                              },
                               child: const Text('Reload'),
                             ),
                           ),
