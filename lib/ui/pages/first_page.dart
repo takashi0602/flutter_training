@@ -8,8 +8,12 @@ class FirstPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = GoRouter.of(context);
+
     // 画面を描画後、0.5秒待機し画面遷移する
     useEffect(() {
+      if (router.location != '/first') return;
+
       WidgetsBinding.instance.endOfFrame.then(
         (_) {
           Future.delayed(const Duration(milliseconds: 500), () {
@@ -19,7 +23,7 @@ class FirstPage extends HookConsumerWidget {
       );
 
       return null;
-    }, const []);
+    }, [router.location]);
 
     return const Scaffold();
   }
