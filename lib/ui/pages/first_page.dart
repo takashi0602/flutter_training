@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_training/foundation/mixin/after_render_mixin.dart';
+import 'package:flutter_training/router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FirstPage extends HookConsumerWidget with AfterRenderMixin {
@@ -7,7 +8,7 @@ class FirstPage extends HookConsumerWidget with AfterRenderMixin {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    moveAfterRender(context, '/first', '/home');
+    moveAfterRender(context, PagePath.first, PagePath.home);
 
     return const Scaffold();
   }
