@@ -20,6 +20,6 @@ class YumemiWeatherNotifier extends StateNotifier<Weather?> {
 }
 
 final yumemiWeatherProvider =
-    StateNotifierProvider<YumemiWeatherNotifier, Weather?>((ref) {
+    StateNotifierProvider.autoDispose<YumemiWeatherNotifier, Weather?>((ref) {
   return YumemiWeatherNotifier();
 });
