@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 
 mixin AfterRenderMixin on StatefulWidget {
   // 画面を描画後、0.5秒待機し画面遷移する
-  void moveAfterRender(
-      BuildContext context, String prevLocation, String nextLocation) {
+  void moveAfterRender(String prevLocation, String nextLocation) {
+    final context = useContext();
     final currentLocation = GoRouter.of(context).location;
 
     useEffect(() {

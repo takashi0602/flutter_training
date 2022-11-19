@@ -9,7 +9,6 @@ class FirstPage extends HookConsumerWidget with AfterRenderMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     moveAfterRender(
-      context,
       const FirstRoute().location,
       const HomeRoute().location,
     );
