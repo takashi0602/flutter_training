@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-mixin AfterRenderMixin on StatefulWidget {
+mixin AfterRenderMixin on HookConsumerWidget {
   // 画面を描画後、0.5秒待機し画面遷移する
   void moveAfterRender(String prevLocation, String nextLocation) {
     final context = useContext();
