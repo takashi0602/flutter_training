@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-mixin AfterRenderMixin on StatefulWidget {
-  // 画面を描画後、0.5秒待機し画面遷移する
-  void moveAfterRender(
-      BuildContext context, String prevLocation, String nextLocation) {
+mixin AfterRenderMixin on HookConsumerWidget {
+  String get pageLocation;
+
+  void afterRender(BuildContext context, bool Function() isMounted);
+
+  Widget buildAfterSetup(BuildContext context, WidgetRef ref);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentLocation = GoRouter.of(context).location;
-
+    final isMounted = useIsMounted();
     useEffect(() {
-      if (currentLocation != prevLocation) return;
-
+      if (currentLocation != pageLocation) return null;
       WidgetsBinding.instance.endOfFrame.then(
-        (_) {
-          Future.delayed(const Duration(milliseconds: 500), () {
-            context.push(nextLocation);
-          });
-        },
+        (_) => afterRender(context, isMounted),
       );
-
       return null;
     }, [currentLocation]);
+    return buildAfterSetup(context, ref);
   }
 }
