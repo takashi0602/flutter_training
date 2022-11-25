@@ -4,23 +4,29 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 mixin AfterRenderMixin on HookConsumerWidget {
-  // 画面を描画後、0.5秒待機し画面遷移する
-  void moveAfterRender(String prevLocation, String nextLocation) {
-    final context = useContext();
+  String get pageLocation;
+
+  void afterRender(BuildContext context);
+
+  Widget buildAfterSetup(BuildContext context, WidgetRef ref);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final currentLocation = GoRouter.of(context).location;
+    final isMounted = useIsMounted();
 
     useEffect(() {
-      if (currentLocation != prevLocation) return;
+      if (currentLocation != pageLocation) return null;
 
       WidgetsBinding.instance.endOfFrame.then(
         (_) {
-          Future.delayed(const Duration(milliseconds: 500), () {
-            context.push(nextLocation);
-          });
+          if (isMounted()) afterRender(context);
         },
       );
 
       return null;
     }, [currentLocation]);
+
+    return buildAfterSetup(context, ref);
   }
 }

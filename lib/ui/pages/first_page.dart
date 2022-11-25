@@ -7,12 +7,18 @@ class FirstPage extends HookConsumerWidget with AfterRenderMixin {
   const FirstPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    moveAfterRender(
-      const FirstRoute().location,
-      const HomeRoute().location,
-    );
+  String get pageLocation => const FirstRoute().location;
 
+  @override
+  void afterRender(BuildContext context) {
+    // 画面を描画後、0.5秒待機し画面遷移する
+    Future.delayed(const Duration(milliseconds: 500), () {
+      const HomeRoute().push(context);
+    });
+  }
+
+  @override
+  Widget buildAfterSetup(BuildContext context, WidgetRef ref) {
     return const Scaffold();
   }
 }
